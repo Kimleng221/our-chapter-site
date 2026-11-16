@@ -1,0 +1,41 @@
+# Our Chapter website
+
+Open the `our-chapter-site` folder in VS Code (File → Open Folder).
+
+## Where to edit what
+
+| I want to change...                          | Open this file          |
+|----------------------------------------------|-------------------------|
+| Text, sections, buttons, links               | `index.html`            |
+| Colours, fonts, sizes, spacing               | `css/style.css`         |
+| Khmer wording                                | `js/translations.js`    |
+| Telegram / Messenger / WhatsApp contact      | `js/config.js`          |
+| Logo and photos                              | `images/` (same file names, or update `index.html`) |
+| Animations and behaviour                     | `js/script.js`          |
+
+Colours are the variables in the first lines of `css/style.css`.
+
+## See your changes live
+
+1. In VS Code, open Extensions and install **Live Server**.
+2. Right-click `index.html` → **Open with Live Server**.
+3. Save a file and the page refreshes by itself.
+
+(Double-clicking `index.html` also works, you just refresh by hand.)
+
+## Before you publish
+
+- In `index.html`, replace `YOUR-DOMAIN.netlify.app` with your real address.
+- Add an `og-image.png` (1200×630) to the folder so links look good when shared.
+- Keep `index.html` at the top level of the folder so GitHub Pages / Netlify find it.
+
+## Put it on GitHub
+
+```
+git init
+git add .
+git commit -m "Our Chapter site"
+git branch -M main
+git remote add origin https://github.com/YOUR-USERNAME/YOUR-REPO.git
+git push -u origin main
+```
