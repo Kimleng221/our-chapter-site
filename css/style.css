@@ -111,13 +111,18 @@ nav a:not(.btn) {
   margin-right: 22px
 }
 
+nav a.lg {
+  margin-right: 0;
+  display: block
+}
+
 nav .btn {
   padding: 9px 20px;
   animation: wig 3s ease-in-out infinite
 }
 
 @media(max-width:700px) {
-  nav a:not(.btn) {
+  nav a:not(.btn):not(.lg) {
     display: none
   }
 }
@@ -146,10 +151,24 @@ nav .btn {
   align-items: center
 }
 
-@media(min-width:860px) {
-  #hero .wrap {
-    grid-template-columns: 1.1fr .9fr
-  }
+/* hero is a single centred column (the phone lives in the demo section) */
+#hero .wrap {
+  text-align: center
+}
+
+#hero h1 {
+  max-width: 11em;
+  margin-left: auto;
+  margin-right: auto
+}
+
+#hero .sub {
+  margin-left: auto;
+  margin-right: auto
+}
+
+#hero .cta {
+  justify-content: center
 }
 
 .pill {
@@ -1598,4 +1617,117 @@ body:not(.rd) :is(.pill, .w, .sub, .cta, .tb) {
     opacity: 1;
     transform: none
   }
+}
+
+/* pricing */
+.plans {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+  max-width: 1020px;
+  margin: 0 auto
+}
+
+.plan {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 34px 26px 28px;
+  background: #fff;
+  border: 2.5px solid var(--m);
+  border-radius: 26px;
+  box-shadow: var(--sh);
+  text-align: center;
+  transition: .3s
+}
+
+.plan:hover {
+  box-shadow: 8px 8px 0 var(--m)
+}
+
+.plan.ft {
+  background: var(--bt)
+}
+
+.plan.vip {
+  background: var(--bl)
+}
+
+.plan h3 {
+  font-size: 28px;
+  color: var(--m)
+}
+
+.plan .pr {
+  font: 800 clamp(42px,7vw,56px)/1.1 'Nunito',sans-serif;
+  color: var(--m);
+  margin: 8px 0 0
+}
+
+.plan small {
+  opacity: .75
+}
+
+.plan ul {
+  list-style: none;
+  padding: 0;
+  margin: 22px 0 28px;
+  text-align: left;
+  flex: 1
+}
+
+.plan li {
+  position: relative;
+  padding: 6px 0 6px 28px
+}
+
+.plan li::before {
+  content: '♥';
+  position: absolute;
+  left: 0;
+  color: var(--m)
+}
+
+.plan .btn {
+  display: block;
+  text-align: center
+}
+
+.plan .rb {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 16px;
+  border: 2.5px solid var(--m);
+  border-radius: 99px;
+  background: var(--m);
+  color: var(--c);
+  font: 800 13px 'Nunito',sans-serif;
+  white-space: nowrap
+}
+
+/* ===== hero upgrade: arched photo stack (wedding-window shapes) ===== */
+#hero { padding: 40px 0 64px; overflow: hidden }
+#hero::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(55% 50% at 50% 82%, #f6cfc8b3, #f6cfc800 70%) }
+#hero .wrap { position: relative }
+.arches { position: relative; width: min(100%, 430px); aspect-ratio: 1/1.08; margin: 10px auto 0 }
+.ar { position: absolute; margin: 0; width: 40%; aspect-ratio: 2/3; overflow: hidden; background: var(--bl); border: 3px solid var(--m); border-radius: 999px 999px 16px 16px; box-shadow: var(--sh); animation: wp .8s cubic-bezier(.3,1.6,.5,1) both; animation-delay: calc(var(--i)*140ms + 600ms) }
+.ar img { display: block; width: 100%; height: 100%; object-fit: cover }
+.ar.a1 { left: 0; top: 20%; transform: rotate(-5deg) }
+.ar.a2 { left: 29%; top: 0; width: 43%; z-index: 2; transform: rotate(2deg) }
+.ar.a3 { right: 0; top: 32%; transform: rotate(6deg) }
+.st { position: absolute; z-index: 3; width: 52px; height: 52px; display: grid; place-items: center; font-size: 25px; font-style: normal; background: var(--bt); border: 2.5px solid var(--m); border-radius: 50%; box-shadow: 3px 3px 0 var(--m) }
+.st.s1 { left: 22%; top: 62%; transform: rotate(-12deg) }
+.st.s2 { right: 24%; top: 2%; transform: rotate(10deg) }
+.st.s3 { right: 3%; bottom: 0; transform: rotate(-8deg) }
+body:not(.rd) .ar { animation-play-state: paused }
+@media(min-width:860px) {
+  #hero { padding: 76px 0 92px }
+  #hero::before { background: radial-gradient(40% 60% at 76% 50%, #f6cfc8b3, #f6cfc800 72%) }
+  #hero .wrap { grid-template-columns: 1.1fr .9fr; gap: 40px; max-width: 1120px; text-align: left }
+  #hero h1, #hero .sub { margin-left: 0 }
+  #hero h1 { max-width: none }
+  #hero .cta { justify-content: flex-start }
+  .arches { margin: 0 0 0 auto; width: 100% }
 }

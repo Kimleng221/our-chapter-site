@@ -55,7 +55,7 @@ try {
 }
 catch (x) { }
 const md = $('#md'), mf = $('#mf'), M = { tg: $('#btg'), fb: $('#bfb'), wa: $('#bwa') };
-const msg = () => { const v = n => mf[n].value.trim(); return `💌 New invitation request · Our Chapter\n👫 Names: ${v('nm')}\n📅 Date: ${v('dt') || '-'}\n🎨 Template: ${mf.tp.value}\n🌐 Language: ${mf.ln.value}\n📞 Contact: ${v('ct') || '-'}\n📝 Notes: ${v('nt') || '-'}`; };
+const msg = () => { const v = n => mf[n].value.trim(); return `💌 New invitation request · Our Chapter\n👫 Names: ${v('nm')}\n📅 Date: ${v('dt') || '-'}\n💎 Package: ${mf.pk.value}\n🎨 Template: ${mf.tp.value}\n🌐 Language: ${mf.ln.value}\n📞 Contact: ${v('ct') || '-'}\n📝 Notes: ${v('nt') || '-'}`; };
 const REQ = ['nm', 'dt', 'ct'], bad = () => REQ.filter(n => !mf[n].value.trim());
 function upd() {
     const q = encodeURIComponent(msg()), ok = !bad().length, U = { wa: `https://wa.me/${WA}?text=${q}`, tg: `https://t.me/${TG}?text=${q}`, fb: `https://www.messenger.com/t/${FB}` };
@@ -89,7 +89,7 @@ catch (x) { } $('#mt').hidden = false; }));
 const tl = $$('.tb a:not(.go)'), so = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting)
     tl.forEach(a => a.classList.toggle('on', a.getAttribute('href') == '#' + e.target.id)); }), { rootMargin: '-45% 0px -50% 0px' });
 tl.forEach(a => { const s = $(a.getAttribute('href')); s && so.observe(s); });
-$$('a[href="#start"],.band .btn').forEach(a => a.addEventListener('click', e => { e.preventDefault(); openM(); }));
+$$('a[href="#start"],.band .btn').forEach(a => a.addEventListener('click', e => { e.preventDefault(); if (a.dataset.plan) mf.pk.value = a.dataset.plan; openM(); }));
 const hero = $('#hero');
 hero.addEventListener('pointermove', e => { const r = hero.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5; $$('[data-d]').forEach(s => s.style.transform = `translate(${x * s.dataset.d}px,${y * s.dataset.d}px)`); });
 function pop(x, y) { for (let i = 0; i < 14; i++) {
@@ -102,7 +102,7 @@ function pop(x, y) { for (let i = 0; i < 14; i++) {
 } }
 $$('.btn').forEach(b => b.addEventListener('click', e => pop(e.clientX, e.clientY)));
 const gi = $('#gi');
-function gd() { const n = gi.value.trim() || 'Guest'; $('#gn').textContent = n; $('#pn').textContent = n; $('#gu').textContent = 'ourchapter.app/?to=' + encodeURIComponent(n); }
+function gd() { const n = gi.value.trim() || 'Guest'; $('#gn').textContent = n; $('#gu').textContent = 'ourchapter.app/?to=' + encodeURIComponent(n); }
 gi.oninput = gd;
 gd();
 for (let i = 0; i < 14; i++) {
