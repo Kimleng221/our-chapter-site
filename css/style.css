@@ -1731,3 +1731,15 @@ body:not(.rd) .ar { animation-play-state: paused }
   #hero .cta { justify-content: flex-start }
   .arches { margin: 0 0 0 auto; width: 100% }
 }
+
+/* ===== choose your chapter: ticket rows ===== */
+.tpls { grid-template-columns: 1fr; gap: 22px; max-width: 920px; margin: 0 auto }
+@media(min-width:760px) { .tpls { grid-template-columns: 1fr 1fr } }
+.tpl { height: auto; min-height: 116px; flex-direction: row; justify-content: flex-start; align-items: center; flex-wrap: wrap; align-content: center; text-align: left; border-radius: 22px; padding: 18px 20px 18px 118px; transform: rotate(var(--r,-1deg)) }
+.tpl:nth-child(even) { --r: 1deg }
+.tpl:hover { transform: translateY(-5px) rotate(0) }
+.tpl b { position: absolute; top: 50%; left: 20px; width: 74px; height: 74px; margin-top: -37px; display: grid; place-items: center; font-size: 38px; font-weight: 400; background: #fffc; border: 2.5px solid var(--m); border-radius: 50%; box-shadow: 3px 3px 0 var(--m); animation: none }
+.tpl::after { inset: 14px auto 14px 104px; width: 0; border-left: 2.5px dashed #7400006b; background: none; animation: none }
+.tpl h3, .tpl small { flex: 0 0 100%; width: 100% }
+.tpl h3 { font-size: 24px }
+.tpl small { margin-top: 2px; font-size: 14px; opacity: .85 }

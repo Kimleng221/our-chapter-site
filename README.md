@@ -26,7 +26,7 @@ Colours are the variables in the first lines of `css/style.css`.
 ## Before you publish
 
 - In `index.html`, replace `YOUR-DOMAIN.netlify.app` with your real address.
-- Add an `og-image.png` (1200×630) to the folder so links look good when shared.
+- `og-image.png` is already included (1200×630).
 - Keep `index.html` at the top level of the folder so GitHub Pages / Netlify find it.
 
 ## Put it on GitHub
