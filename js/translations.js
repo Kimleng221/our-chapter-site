@@ -95,6 +95,7 @@ const KH = {
   "Pricing": "តម្លៃ",
   "Simple pricing": "តម្លៃសាមញ្ញ",
   "One price per invitation. Pick the one that fits your day.": "តម្លៃតែមួយសម្រាប់ធៀបអញ្ជើញនីមួយៗ។ ជ្រើសរើសកញ្ចប់ដែលសមនឹងថ្ងៃរបស់អ្នក។",
+   
   "Standard": "ស្តង់ដារ",
    "Couple’s names": "ឈ្មោះកូនកំលោះ និងកូនក្រមុំ",
   "Wedding date and time": "កាលបរិច្ឆេទ និងម៉ោងអាពាហ៍ពិពាហ៍",
@@ -104,7 +105,9 @@ const KH = {
   "Digital invitation link": "តំណសំបុត្រអញ្ជើញឌីជីថល",
   "QR Code": "កូដ QR",
   "3 photos": "រូបថត ៣ សន្លឹក",
+   
   "Premium": "ប្រេមៀម",
+   
   "VIP": "វីអាយភី",
   "per invitation": "ក្នុងមួយធៀបអញ្ជើញ",
   "Most popular": "ពេញនិយមបំផុត",
