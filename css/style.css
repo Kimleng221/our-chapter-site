@@ -1756,3 +1756,26 @@ body:not(.rd) .ar { animation-play-state: paused }
 @media(min-width:900px) { .plans { grid-template-columns: repeat(3,1fr); max-width: 1100px; align-items: stretch } .plan.ft { transform: translateY(-14px) } }
 .plan .pv { display: block; margin-top: 12px; text-align: center; font: 800 15px 'Nunito',sans-serif; color: var(--m); text-decoration: underline; text-underline-offset: 4px; text-decoration-style: dashed }
 .plan .pv:hover { text-decoration-style: solid }
+
+/* ===== hero: invitation-card mockup (no photos) ===== */
+.inv-back, .inv { position: absolute; border: 3px solid var(--m); border-radius: 999px 999px 22px 22px }
+.inv-back { left: 20%; right: 0; top: 7%; bottom: 0; background: var(--bl); box-shadow: var(--sh); transform: rotate(6deg); animation: wp .8s cubic-bezier(.3,1.6,.5,1) 700ms both }
+.inv { left: 4%; right: 14%; top: 0; bottom: 6%; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 70px 18px 22px; text-align: center; background: #fffaf0; box-shadow: var(--sh); transform: rotate(-3deg); animation: wp .8s cubic-bezier(.3,1.6,.5,1) 550ms both }
+.inv::before { content: ""; position: absolute; inset: 9px; border: 1.5px dashed #74000066; border-radius: 999px 999px 14px 14px; pointer-events: none }
+.inv .yi { padding: 4px 14px; font: 800 12px 'Nunito',sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--m); background: var(--bt); border: 2px solid var(--m); border-radius: 99px }
+.inv .orn { font-style: normal; font-size: 22px; color: #c9546a; line-height: 1 }
+.inv .nm { margin: 0; font-size: clamp(26px, 6.4vw, 38px); line-height: 1.35; color: var(--m) }
+.inv .dt { margin: 0; font: 800 15px 'Nunito',sans-serif; letter-spacing: .14em; color: var(--ink) }
+.inv .cd { display: flex; gap: 8px; margin-top: 8px }
+.inv .cd > div { min-width: 58px; padding: 7px 4px 6px; background: var(--c); border: 2px solid var(--m); border-radius: 12px; box-shadow: 2px 2px 0 var(--m) }
+.inv .cd b { display: block; font: 800 22px/1 'Nunito',sans-serif; color: var(--m) }
+.inv .cd small { font: 800 11px 'Nunito',sans-serif; text-transform: uppercase; letter-spacing: .06em; opacity: .75 }
+.arches .st.s1 { left: 0; top: auto; bottom: 14%; right: auto }
+.arches .st.s2 { right: 6%; top: -2% }
+.chip { position: absolute; z-index: 3; padding: 7px 14px; font: 800 14px 'Nunito',sans-serif; color: var(--m); background: var(--bt); border: 2.5px solid var(--m); border-radius: 99px; box-shadow: 3px 3px 0 var(--m); white-space: nowrap }
+.chip.c1 { right: 0; top: 44%; transform: rotate(7deg) }
+.chip.c2 { right: 8%; bottom: 3%; transform: rotate(-5deg) }
+html[lang=km] .inv .nm { line-height: 1.6 }
+
+/* demo phone is now the link */
+a.ph3 { display: block; color: inherit; text-decoration: none; cursor: pointer; -webkit-tap-highlight-color: transparent }
