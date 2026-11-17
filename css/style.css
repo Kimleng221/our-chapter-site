@@ -1743,3 +1743,16 @@ body:not(.rd) .ar { animation-play-state: paused }
 .tpl h3, .tpl small { flex: 0 0 100%; width: 100% }
 .tpl h3 { font-size: 24px }
 .tpl small { margin-top: 2px; font-size: 14px; opacity: .85 }
+
+/* ===== pricing: 3 packages with discounts ===== */
+.plan .no { font: 800 13px 'Nunito',sans-serif; letter-spacing: .12em; color: var(--m); opacity: .6 }
+.plan .tg { display: inline-block; align-self: center; margin: 6px 0 4px; padding: 2px 14px; border: 2px solid var(--m); border-radius: 99px; font: 800 12px 'Nunito',sans-serif; font-style: normal; letter-spacing: .06em; text-transform: uppercase; color: var(--m); background: #fff8 }
+.plan .was { display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 10px; min-height: 28px }
+.plan .was s { font: 700 18px 'Nunito',sans-serif; opacity: .55; text-decoration-thickness: 2px }
+.plan .sv { font: 800 12px 'Nunito',sans-serif; padding: 3px 10px; border-radius: 99px; background: var(--m); color: var(--c); transform: rotate(-3deg) }
+.plan .pr { margin-top: 0 }
+.plan li.lead { padding-left: 0; font-weight: 800; color: var(--m) }
+.plan li.lead::before { content: none }
+@media(min-width:900px) { .plans { grid-template-columns: repeat(3,1fr); max-width: 1100px; align-items: stretch } .plan.ft { transform: translateY(-14px) } }
+.plan .pv { display: block; margin-top: 12px; text-align: center; font: 800 15px 'Nunito',sans-serif; color: var(--m); text-decoration: underline; text-underline-offset: 4px; text-decoration-style: dashed }
+.plan .pv:hover { text-decoration-style: solid }
