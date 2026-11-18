@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Watch our templates · Our Chapter</title>
+<link rel="icon" href="favicon.ico" sizes="any"><link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Nunito:wght@600;800&family=Battambang:wght@400;700&family=Moul&family=Moulpali&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+.wt{max-width:980px;margin:0 auto;padding:22px 18px 60px;text-align:center}
+.wt header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px}
+.wt header img{height:46px;display:block}
+.wt header a.back{font-weight:800;color:var(--m);text-decoration:none}
+.wt h1{font-size:clamp(28px,6vw,44px)}
+.wt .tabs{display:inline-flex;gap:8px;margin:20px 0 26px;padding:6px;background:#fff;border:2.5px solid var(--m);border-radius:99px;box-shadow:3px 3px 0 var(--m)}
+.wt .tabs button{font:800 15px 'Nunito',sans-serif;padding:8px 18px;border:0;border-radius:99px;background:none;color:var(--m);cursor:pointer}
+.wt .tabs button[aria-selected=true]{background:var(--m);color:var(--c)}
+.wt .stage{display:grid;gap:30px;align-items:center;justify-items:center}
+.wt .phone{width:min(86vw,370px);height:min(78vh,720px);min-height:520px;padding:10px;background:#fff;border:3px solid var(--m);border-radius:42px;box-shadow:9px 9px 0 var(--m)}
+.wt .phone iframe{width:100%;height:100%;border:0;border-radius:32px;background:var(--c)}
+.wt .info h2{font-size:30px}.wt .info p{margin:6px 0}
+.wt .price{font:800 26px 'Nunito',sans-serif;color:var(--m)}
+.wt .acts{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:16px}
+@media(min-width:860px){.wt .stage{grid-template-columns:auto 1fr;justify-items:start;text-align:left;gap:56px}.wt .acts{justify-content:flex-start}}
+</style></head>
+<body><main class="wt">
+<header><a href="index.html"><img src="images/logo.png" alt="Our Chapter"></a><a class="back" href="index.html#chapters">← Back</a></header>
+<h1>Watch it live</h1>
+<p>Pick a template and see it just like your guests will.</p>
+<div class="tabs" role="tablist"><button role="tab" data-k="basic">Basic</button><button role="tab" data-k="standard">Standard</button><button role="tab" data-k="premium">Premium</button></div>
+<div class="stage">
+<div class="phone"><iframe id="fr" title="Template preview" loading="lazy" allow="autoplay"></iframe></div>
+<div class="info"><h2 id="nm"></h2><p id="tg"></p><p class="price" id="pr"></p>
+<div class="acts"><a class="btn o" id="op" target="_blank" rel="noopener">Open full screen ↗</a><a class="btn" id="ch" href="index.html#start">Choose this one ♥</a></div>
+<p style="font-size:14px;opacity:.75;margin-top:14px">Best on your phone. Tap the invitation to open it.</p></div>
+</div></main>
+<script>
+var T={basic:{n:"Basic",t:"Simple & Elegant",p:"$9.99",u:"https://basic-wedding-invitation.vercel.app/"},
+standard:{n:"Standard",t:"Personal & Memorable",p:"$19.99",u:"https://standard-e-invitation.vercel.app/"},
+premium:{n:"Premium",t:"Exclusive & Luxurious",p:"$29.99",u:"https://theara-nysa1.netlify.app/"}};
+function show(k){if(!T[k])k="basic";var d=T[k];
+document.getElementById("fr").src=d.u;document.getElementById("nm").textContent=d.n;
+document.getElementById("tg").textContent=d.t;document.getElementById("pr").textContent=d.p;
+document.getElementById("op").href=d.u;
+document.querySelectorAll(".tabs button").forEach(function(b){b.setAttribute("aria-selected",b.dataset.k===k)});
+try{history.replaceState(null,"","#"+k)}catch(e){}}
+document.querySelectorAll(".tabs button").forEach(function(b){b.onclick=function(){show(b.dataset.k)}});
+show(location.hash.slice(1));
+</script></body></html>

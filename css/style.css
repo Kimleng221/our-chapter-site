@@ -1779,3 +1779,91 @@ html[lang=km] .inv .nm { line-height: 1.6 }
 
 /* demo phone is now the link */
 a.ph3 { display: block; color: inherit; text-decoration: none; cursor: pointer; -webkit-tap-highlight-color: transparent }
+
+/* templates are now links to live demos */
+a.tpl { color: inherit; text-decoration: none }
+.tpl .go { flex: 0 0 auto; margin-top: 10px; padding: 5px 14px; font: 800 13px 'Nunito',sans-serif; color: var(--c); background: var(--m); border-radius: 99px }
+@media(min-width:900px) { .tpls { grid-template-columns: repeat(3,1fr); max-width: 1100px } }
+
+/* ===== in-page demo viewer ===== */
+.pvm { position: fixed; inset: 0; z-index: 9999; display: grid; place-items: center; padding: env(safe-area-inset-top,0) 12px env(safe-area-inset-bottom,0); background: #3b0a0ad9; backdrop-filter: blur(6px) }
+.pvm[hidden] { display: none }
+.pvbox { display: flex; flex-direction: column; align-items: center; gap: 12px; width: 100% }
+.pvtabs { display: flex; align-items: center; gap: 8px; padding: 6px; background: #fff; border: 2.5px solid var(--m); border-radius: 99px; box-shadow: 3px 3px 0 var(--m) }
+.pvtabs button { font: 800 14px 'Nunito',sans-serif; color: var(--m); background: none; border: 0; border-radius: 99px; padding: 8px 16px; cursor: pointer }
+.pvtabs button.on { color: var(--c); background: var(--m) }
+.pvtabs .pvx { padding: 8px 12px; margin-left: 2px; border-left: 2px solid #7400002e; border-radius: 0 99px 99px 0 }
+.pvphone { width: min(100%, 390px); height: min(76vh, 760px); height: min(76dvh, 760px); padding: 8px; background: #fff; border: 3px solid var(--m); border-radius: 38px; box-shadow: 8px 8px 0 var(--m) }
+.pvphone iframe { width: 100%; height: 100%; border: 0; border-radius: 28px; background: var(--c) }
+.pvo { font: 800 14px 'Nunito',sans-serif; color: #fff; text-decoration: underline; text-underline-offset: 4px }
+
+/* ===== template gallery cards (shop-style, all classes prefixed tp- so they never clash) ===== */
+.tgrid { display: grid; gap: 22px; grid-template-columns: 1fr; max-width: 420px; margin: 0 auto }
+@media(min-width:700px) { .tgrid { grid-template-columns: repeat(3,1fr); max-width: 1100px } }
+.tp { display: flex; flex-direction: column; overflow: hidden; background: #fff; border: 2.5px solid var(--m); border-radius: 22px; box-shadow: var(--sh); transition: transform .25s }
+.tp:hover { transform: translateY(-6px) }
+.tp-img { position: relative; display: block; aspect-ratio: 4/5; overflow: hidden; border-bottom: 2.5px solid var(--m); background: var(--bl); container-type: inline-size; color: inherit; text-decoration: none }
+.tp-shot { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block }
+.tp-mock { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5cqw; padding-top: 3cqw; background: repeating-linear-gradient(45deg, var(--lt) 0 1px, #0000 1px 7cqw), repeating-linear-gradient(-45deg, var(--lt) 0 1px, #0000 1px 7cqw), var(--bg) }
+.tp-mock.m1 { --bg: #ecc3ba; --lt: #d9a398; --ac: #9a3b4b }
+.tp-mock.m2 { --bg: #b49a63; --lt: #8d7447; --ac: #7a5a2c }
+.tp-mock.m3 { --bg: #5e1015; --lt: #8a2a31; --ac: #b8892f }
+.tp-bx { width: 52%; aspect-ratio: 1/1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2cqw; padding: 4cqw; text-align: center; background: #faf6ea; border: 1.3cqw solid #fff; outline: .5cqw solid var(--ac); outline-offset: -2.6cqw; box-shadow: 0 3cqw 6cqw #0005; transition: transform .4s }
+.tp:hover .tp-bx { transform: scale(1.04) }
+.tp-cr { font-style: normal; font-size: 6cqw; line-height: 1; color: var(--ac) }
+.tp-wi { font: 800 2.8cqw/1.3 'Nunito',sans-serif; letter-spacing: .1em; color: var(--ac) }
+.tp-dv { width: 60%; height: 1px; background: var(--ac); opacity: .5 }
+.tp-nm { margin: 0; font-size: 6.4cqw; font-weight: 400; line-height: 1.3; color: var(--ac) }
+html[lang=km] .tp-nm { line-height: 1.6 }
+.tp-open { padding: 1.7cqw 6cqw; font: 800 3.2cqw/1.4 'Nunito',sans-serif; color: #fff; background: var(--ac); border-radius: 1cqw; box-shadow: 0 1cqw 2.4cqw #0005 }
+.tp-wd, .tp-pop { position: absolute; padding: 3px 11px; font: 800 12px 'Nunito',sans-serif; border-radius: 99px; border: 2px solid var(--m) }
+.tp-wd { top: 10px; left: 10px; background: var(--bl); color: var(--m) }
+.tp-pop { bottom: 10px; left: 10px; background: var(--bt); color: var(--m) }
+.tp-dc { position: absolute; top: 10px; right: 10px; padding: 3px 11px; font: 800 13px 'Nunito',sans-serif; color: #fff; background: #d62839; border-radius: 99px; transform: rotate(4deg) }
+.tp-body { display: flex; flex-direction: column; gap: 8px; padding: 16px 16px 18px; flex: 1; text-align: left }
+.tp-body h3 { margin: 0; font-size: 24px; color: var(--m) }
+.tp-body small { margin-top: -4px; font-weight: 800; opacity: .7 }
+.tp-chips { display: flex; flex-wrap: wrap; gap: 6px }
+.tp-chip { padding: 3px 10px; font: 700 12.5px 'Nunito',sans-serif; color: var(--ink); background: #e9f6e4; border-radius: 99px }
+.tp-price { display: flex; align-items: baseline; gap: 8px; margin-top: auto; padding-top: 12px; border-top: 1.5px dashed #74000040 }
+.tp-price b { font: 800 28px 'Nunito',sans-serif; color: #d9480f }
+.tp-price s { font: 700 15px 'Nunito',sans-serif; opacity: .5 }
+.tp-save { margin-left: auto; padding: 3px 10px; font: 800 12px 'Nunito',sans-serif; color: #d62839; background: #fde8ea; border-radius: 99px }
+.tp-btns { display: flex; gap: 8px }
+.tp-btns .btn { flex: 1; padding: 11px 10px; font-size: 14.5px; text-align: center; white-space: nowrap }
+.tp-btns .tp-view { flex: 0 0 auto; padding-inline: 16px }
+
+/* ===== compare packages page ===== */
+.plan { cursor: pointer }
+.cmp-hint { margin-top: 6px; font-weight: 800; color: var(--m) }
+.cmp { position: fixed; inset: 0; z-index: 54; overflow: auto; background: var(--c) }
+.cmp[hidden] { display: none }
+.cmp-top { position: sticky; top: 0; z-index: 3; display: flex; align-items: center; gap: 12px; padding: calc(env(safe-area-inset-top,0px) + 10px) 14px 10px; background: var(--c); border-bottom: 2px dashed #74000040 }
+.cmp-top h2 { margin: 0; font-size: clamp(20px,5vw,28px) }
+.cmp-back { padding: 7px 14px; font: 800 15px 'Nunito',sans-serif; color: var(--m); background: #fff; border: 2.5px solid var(--m); border-radius: 99px; box-shadow: 3px 3px 0 var(--m); cursor: pointer }
+.cmp-wrap { max-width: 860px; margin: 0 auto; padding: 16px 12px 110px }
+.cmp-rec { margin: 0; padding: 12px 16px; text-align: center; font-weight: 800; color: var(--m); background: var(--bt); border: 2.5px solid var(--m); border-radius: 16px; box-shadow: var(--sh) }
+.cmp-t { width: 100%; table-layout: fixed; border-collapse: separate; border-spacing: 0; margin-top: 22px; font: 600 14px/1.35 'Nunito',sans-serif }
+.cmp-t th[scope=row] { width: 34%; padding: 11px 6px 11px 2px; text-align: left; font-weight: 700; border-bottom: 1.5px dashed #74000030 }
+.cmp-t td { padding: 11px 3px; text-align: center; font-weight: 800; border-bottom: 1.5px dashed #74000030 }
+.cmp-t td.cmp-y { color: #2f8a3e; font-size: 19px }
+.cmp-t td.cmp-n { color: #74000045 }
+.cmp-t td.cmp-v { color: var(--m) }
+.cmp-t thead th.cmp-col { position: sticky; top: calc(env(safe-area-inset-top,0px) + 62px); z-index: 2; padding: 10px 3px 8px; text-align: center; background: var(--c); border-bottom: 2.5px solid var(--m) }
+.cmp-t thead th.cmp-col h3 { margin: 0; font-size: 17px; color: var(--m) }
+.cmp-t thead th.cmp-col b { display: block; font: 800 15px 'Nunito',sans-serif; color: #d9480f }
+.cmp-t th.cmp-hl { background: var(--m); border-radius: 14px 14px 0 0 }
+.cmp-t th.cmp-hl h3 { color: var(--c) }
+.cmp-t th.cmp-hl b { color: var(--bt) }
+.rb2 { display: block; width: max-content; max-width: 100%; margin: 0 auto 4px; padding: 1px 8px; font: 800 10px 'Nunito',sans-serif; color: var(--m); background: var(--bt); border-radius: 99px }
+.cmp-t td.cmp-hl { background: #fbe9e5; border-left: 2.5px solid var(--m); border-right: 2.5px solid var(--m) }
+.cmp-t tfoot td { padding-top: 16px; border-bottom: 0 }
+.cmp-t tfoot td.cmp-hl { padding-bottom: 12px; border-bottom: 2.5px solid var(--m); border-radius: 0 0 14px 14px }
+.cmp-t tfoot .btn { display: block; width: 100%; padding: 9px 4px; font-size: 13px; text-align: center }
+@media(max-width:480px) { .cmp-t { font-size: 13px } .cmp-t thead th.cmp-col h3 { font-size: 15px } }
+
+/* language switch moves up beside the title while the compare page is open */
+body.cmp-open .lgs { top: calc(env(safe-area-inset-top,0px) + 8px); bottom: auto; right: 12px; padding: 3px; border-width: 2px; box-shadow: 3px 3px 0 var(--m) }
+body.cmp-open .lgs button { padding: 5px 11px; font-size: 13px }
+body.cmp-open .lgs svg { width: 18px; height: 12px }
+.cmp-top h2 { padding-right: 128px; font-size: clamp(16px,4.6vw,26px); line-height: 1.15 }
