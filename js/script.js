@@ -31,9 +31,13 @@ const go = () => { if (!rdy) {
     document.body.classList.add('rd');
 } };
 sps.onclick = () => { sps.classList.add('out'); go(); setTimeout(() => sps.remove(), 800); };
-setTimeout(go, 5300);
-setTimeout(() => sps.remove(), 6200);
+const quick = matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (quick) { sps.remove(); go(); }
+setTimeout(go, 3000);
+setTimeout(() => sps.remove(), 3900);
 $('#mq').innerHTML += $('#mq').innerHTML;
+/* reviews: copy each row once so the slide loops without a gap */
+$$('.tm-track').forEach(t => [...t.children].forEach(n => { const k = n.cloneNode(true); k.setAttribute('aria-hidden', 'true'); t.append(k); }));
 /* EN / KH switch: translates every text node found in the dictionary */
 const sp = t => { const a = t.match(/^[^A-Za-z0-9]*/)[0], b = t.match(/[^A-Za-z0-9.!?…’]*$/)[0]; return [a, t.slice(a.length, t.length - b.length), b]; };
 const LR = [], h1 = $('h1'), h1E = h1.innerHTML;
@@ -44,16 +48,26 @@ for (let n; n = tw.nextNode();) {
         LR.push({ n, o, a, c, b });
 }
 const PH = $$('[placeholder]').map(e => ({ e, o: e.placeholder }));
-function setLg(l) { document.documentElement.lang = l == 'kh' ? 'km' : 'en'; LR.forEach(r => r.n.nodeValue = l == 'kh' ? r.a + (KH[r.c] || NUM(r.c)) + r.b : r.o); PH.forEach(p => p.e.placeholder = l == 'kh' ? (KH[p.o] || p.o) : p.o); h1.innerHTML = l == 'kh' ? H1K : h1E; $$('.lgs button').forEach(b => b.classList.toggle('on', b.dataset.l == l)); try {
+function setLg(l) { document.documentElement.lang = l == 'kh' ? 'km' : 'en'; LR.forEach(r => r.n.nodeValue = l == 'kh' ? r.a + (KH[r.c] || NUM(r.c)) + r.b : r.o); PH.forEach(p => p.e.placeholder = l == 'kh' ? (KH[p.o] || p.o) : p.o); h1.innerHTML = l == 'kh' ? H1K : h1E; $('#lgp').textContent = l == 'kh' ? 'EN English' : 'KH ខ្មែរ'; $$('.lgs button').forEach(b => b.classList.toggle('on', b.dataset.l == l)); try {
     localStorage.setItem('ocl', l);
 }
 catch (x) { } }
 $$('.lgs button').forEach(b => b.onclick = () => setLg(b.dataset.l));
+$('#lgp').onclick = () => setLg(document.documentElement.lang == 'km' ? 'en' : 'kh');
+/* Phone menu: hamburger opens the dropdown; closes on link tap, Esc, or tapping outside */
+const nv = $('nav'), mb = $('#mb');
+const menu = o => { nv.classList.toggle('open', o); mb.setAttribute('aria-expanded', String(o)); };
+mb.onclick = () => menu(!nv.classList.contains('open'));
+$$('#mp a').forEach(a => a.addEventListener('click', () => menu(false)));
+addEventListener('keydown', e => { if (e.key == 'Escape') menu(false); });
+document.addEventListener('click', e => { if (!nv.contains(e.target)) menu(false); });
 try {
-    if (localStorage.getItem('ocl') == 'kh')
+    const saved = localStorage.getItem('ocl');
+    if (saved == 'kh' || (!saved && /^km/i.test(navigator.language || '')))
         setLg('kh');
 }
 catch (x) { }
+const TPL = { Basic: 'Simple & Elegant', Standard: 'Personal & Memorable', Premium: 'Exclusive & Luxurious' };
 const md = $('#md'), mf = $('#mf'), M = { tg: $('#btg'), fb: $('#bfb'), wa: $('#bwa') };
 const msg = () => { const v = n => mf[n].value.trim(); return `💌 New invitation request · Our Chapter\n👫 Names: ${v('nm')}\n📅 Date: ${v('dt') || '-'}\n💎 Package: ${mf.pk.value}\n🎨 Template: ${mf.tp.value}\n🌐 Language: ${mf.ln.value}\n📞 Contact: ${v('ct') || '-'}\n📝 Notes: ${v('nt') || '-'}`; };
 const REQ = ['nm', 'dt', 'ct'], bad = () => REQ.filter(n => !mf[n].value.trim());
@@ -71,6 +85,7 @@ function openM() { upd(); $('#mt').hidden = true; $('#mw').hidden = true; md.hid
 function closeM() { md.classList.remove('on'); document.body.style.overflow = ''; setTimeout(() => md.hidden = true, 250); }
 mf.addEventListener('input', e => { e.target.classList.remove('bad'); upd(); });
 mf.onsubmit = e => e.preventDefault();
+mf.pk.addEventListener('change', () => { const t = TPL[mf.pk.value.split(' ')[0]]; if (t && !(mf.pk.value.startsWith('Premium') && mf.tp.value == 'Grand & Majestic')) mf.tp.value = t; upd(); });
 $('.mx').onclick = closeM;
 md.onclick = e => { if (e.target === md)
     closeM(); };
@@ -89,7 +104,7 @@ catch (x) { } $('#mt').hidden = false; }));
 const tl = $$('.tb a:not(.go)'), so = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting)
     tl.forEach(a => a.classList.toggle('on', a.getAttribute('href') == '#' + e.target.id)); }), { rootMargin: '-45% 0px -50% 0px' });
 tl.forEach(a => { const s = $(a.getAttribute('href')); s && so.observe(s); });
-$$('a[href="#start"],.band .btn').forEach(a => a.addEventListener('click', e => { e.preventDefault(); if (a.dataset.plan) mf.pk.value = a.dataset.plan; openM(); }));
+$$('a[href="#start"],.band .btn').forEach(a => a.addEventListener('click', e => { e.preventDefault(); if (a.dataset.plan) mf.pk.value = a.dataset.plan; const t = a.dataset.tpl || TPL[mf.pk.value.split(' ')[0]]; if (t) mf.tp.value = t; openM(); }));
 const hero = $('#hero');
 hero.addEventListener('pointermove', e => { const r = hero.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5; $$('[data-d]').forEach(s => s.style.transform = `translate(${x * s.dataset.d}px,${y * s.dataset.d}px)`); });
 function pop(x, y) { for (let i = 0; i < 14; i++) {
