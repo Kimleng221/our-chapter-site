@@ -6,35 +6,12 @@ const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting
     io.unobserve(e.target);
 } }), { threshold: .15 });
 $$('.rv').forEach(e => io.observe(e));
-const sps = $('#splash');
-/* Personal link: yourdomain.com/?to=Sokha shows "Dear Sokha" on the welcome screen */
+/* Personal link: yourdomain.com/?to=Sokha fills the guest name in the demo box */
 try {
     const guest = (new URLSearchParams(location.search).get('to') || '').trim().slice(0, 40);
-    if (guest) {
-        const g = $('#sgst');
-        g.textContent = 'សូមគោរពជូន · Dear ' + guest;
-        g.hidden = false;
-        $('#gi').value = guest;
-    }
+    if (guest) $('#gi').value = guest;
 } catch (x) { }
-$('.slg').src = $('nav img').src;
-for (let i = 0; i < 14; i++) {
-    const h = document.createElement('i');
-    h.className = 'sh';
-    h.textContent = ['♥', '🌸', '✨'][i % 3];
-    h.style.cssText = `left:${Math.random() * 100}%;font-size:${14 + Math.random() * 18}px;color:#c0305a;animation-duration:${4 + Math.random() * 4}s;animation-delay:-${Math.random() * 6}s`;
-    sps.append(h);
-}
-let rdy = 0;
-const go = () => { if (!rdy) {
-    rdy = 1;
-    document.body.classList.add('rd');
-} };
-sps.onclick = () => { sps.classList.add('out'); go(); setTimeout(() => sps.remove(), 800); };
-const quick = matchMedia('(prefers-reduced-motion: reduce)').matches;
-if (quick) { sps.remove(); go(); }
-setTimeout(go, 3000);
-setTimeout(() => sps.remove(), 3900);
+document.body.classList.add('rd');
 $('#mq').innerHTML += $('#mq').innerHTML;
 /* reviews: copy each row once so the slide loops without a gap */
 $$('.tm-track').forEach(t => [...t.children].forEach(n => { const k = n.cloneNode(true); k.setAttribute('aria-hidden', 'true'); t.append(k); }));
@@ -67,7 +44,8 @@ try {
         setLg('kh');
 }
 catch (x) { }
-const TPL = { Basic: 'Simple & Elegant', Standard: 'Personal & Memorable', Premium: 'Exclusive & Luxurious' };
+const TPL = { Standard: 'Personal & Memorable', Premium: 'Personal & Memorable', VIP: 'Bespoke & Extraordinary' };
+const PREM_TPL = ['Personal & Memorable', 'Exclusive & Luxurious', 'Grand & Majestic'];
 const md = $('#md'), mf = $('#mf'), M = { tg: $('#btg'), fb: $('#bfb'), wa: $('#bwa') };
 const msg = () => { const v = n => mf[n].value.trim(); return `💌 New invitation request · Our Chapter\n👫 Names: ${v('nm')}\n📅 Date: ${v('dt') || '-'}\n💎 Package: ${mf.pk.value}\n🎨 Template: ${mf.tp.value}\n🌐 Language: ${mf.ln.value}\n📞 Contact: ${v('ct') || '-'}\n📝 Notes: ${v('nt') || '-'}`; };
 const REQ = ['nm', 'dt', 'ct'], bad = () => REQ.filter(n => !mf[n].value.trim());
@@ -85,7 +63,7 @@ function openM() { upd(); $('#mt').hidden = true; $('#mw').hidden = true; md.hid
 function closeM() { md.classList.remove('on'); document.body.style.overflow = ''; setTimeout(() => md.hidden = true, 250); }
 mf.addEventListener('input', e => { e.target.classList.remove('bad'); upd(); });
 mf.onsubmit = e => e.preventDefault();
-mf.pk.addEventListener('change', () => { const t = TPL[mf.pk.value.split(' ')[0]]; if (t && !(mf.pk.value.startsWith('Premium') && mf.tp.value == 'Grand & Majestic')) mf.tp.value = t; upd(); });
+mf.pk.addEventListener('change', () => { const t = TPL[mf.pk.value.split(' ')[0]]; if (t && !(!mf.pk.value.startsWith('VIP') && PREM_TPL.includes(mf.tp.value))) mf.tp.value = t; upd(); });
 $('.mx').onclick = closeM;
 md.onclick = e => { if (e.target === md)
     closeM(); };
